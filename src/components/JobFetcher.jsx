@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
-import { createClient } from '@supabase/supabase-js';
 
 import axios from 'axios';
  
 // Initialize Supabase with your URL and Anon Key
 
-const supabaseUrl = 'https://etraredcmfuxkczkxjqo.supabase.co';
+// const supabaseUrl = 'https://etraredcmfuxkczkxjqo.supabase.co';
 
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0cmFyZWRjbWZ1eGtjemt4anFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjgyODcyODgsImV4cCI6MjA0Mzg2MzI4OH0.V5lfxq4z0jgX6ETIx567SzWiSJbXqBNoGlDIf5DYuxg';
+// const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0cmFyZWRjbWZ1eGtjemt4anFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjgyODcyODgsImV4cCI6MjA0Mzg2MzI4OH0.V5lfxq4z0jgX6ETIx567SzWiSJbXqBNoGlDIf5DYuxg';
  
-// Create a Supabase client
+// // Create a Supabase client
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// const supabase = createClient(supabaseUrl, supabaseAnonKey);
  
 const JobFetcher = () => {
 
@@ -36,7 +35,6 @@ const JobFetcher = () => {
  
     const fetchJobs = async (categoryLabel, experienceLevel, totalJobsToFetch) => {
 
-        console.log('Starting fetchJobs with params:', { categoryLabel, experienceLevel, totalJobsToFetch });
 
         let allJobs = [];
 
@@ -64,17 +62,13 @@ const JobFetcher = () => {
 
                         app_key: import.meta.env.VITE_ADZUNA_APP_KEY,
 
-                        results_per_page: resultsPerPage,
+
 
                         what: categoryLabel,
 
-                        page: page,
-
-                        category: categoryLabel,
-
                         // Convert experience level to Adzuna's format if needed
 
-                        experience: experienceLevel
+                
 
                     },
 
@@ -140,7 +134,7 @@ const JobFetcher = () => {
 
                     console.log('Batch of 100 jobs reached, inserting into Supabase');
 
-                    await insertJobsIntoSupabase(allJobs);
+                    await console.log('alljob' +allJobs);
 
                     allJobs = [];
 
@@ -170,35 +164,35 @@ const JobFetcher = () => {
 
             console.log(`Inserting remaining ${allJobs.length} jobs into Supabase`);
 
-            await insertJobsIntoSupabase(allJobs);
+            await console.log('alljob' +allJobs);
 
         }
 
     };
  
-    const insertJobsIntoSupabase = async (jobs) => {
+    // const insertJobsIntoSupabase = async (jobs) => {
 
-        console.log('Attempting to insert jobs into Supabase:', jobs.length);
+    //     console.log('Attempting to insert jobs into Supabase:', jobs.length);
 
-        const { data, error } = await supabase.from('jobs').upsert(jobs, {
+    //     const { data, error } = await supabase.from('jobs').upsert(jobs, {
 
-            onConflict: 'external_job_id',
+    //         onConflict: 'external_job_id',
 
-            ignoreDuplicates: true
+    //         ignoreDuplicates: true
 
-        });
+    //     });
 
-        if (error) {
+    //     if (error) {
 
-            console.error('Supabase insertion error:', error);
+    //         console.error('Supabase insertion error:', error);
 
-            throw error;
+    //         throw error;
 
-        }
+    //     }
 
-        console.log('Successfully inserted jobs into Supabase', data);
+    //     console.log('Successfully inserted jobs into Supabase', data);
 
-    };
+    // };
  
     const handleFetchJobs = async () => {
 
@@ -212,11 +206,11 @@ const JobFetcher = () => {
 
             console.log('Fetching javascript jobs');
 
-            await fetchJobs('javascript', 'mid_level', 100);
+            await fetchJobs('javascript', '', 20);
 
             console.log('Fetching developer jobs');
 
-            await fetchJobs('developer', 'mid_level', 100);
+            await fetchJobs('developer', 'mid_level', 20);
 
             setMessage('Successfully fetched and stored jobs!');
 
