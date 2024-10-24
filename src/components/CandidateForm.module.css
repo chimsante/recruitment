@@ -1,0 +1,59 @@
+/* Container for the form */
+.formContainer {
+    max-width: 600px; /* Set a maximum width for the form */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px; /* Add some padding */
+    background-color: #f9f9f9; /* Light gray background for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+  
+/* Style for each input field */
+.inputField {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside the input */
+    margin: 10px 0; /* Space between inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+}
+  
+  
+/* Style for the textarea */
+.textareaField {
+    min-height: 100px; /* Minimum height for the textarea */
+}
+  
+/* Style for the button */
+.submitButton {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside the button */
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+  
+/* Button hover effect */
+.submitButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+  
+/* Label styles */
+.label {
+    font-weight: bold; /* Bold font for labels */
+    margin-bottom: 5px; /* Space below labels */
+    display: block; /* Block display for labels */
+}
+  
+/* Style for error messages */
+.errorMessage {
+    color: red; /* Red color for error messages */
+    font-size: 14px; /* Smaller font size */
+    margin-top: -5px; /* Move up a bit */
+    margin-bottom: 10px; /* Space below error messages */
+}
+  
